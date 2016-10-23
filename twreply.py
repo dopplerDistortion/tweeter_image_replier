@@ -5,15 +5,15 @@ import sys
 import picamera
 from random import randint
 
-CONSUMER_KEY = "UvibSZAxxs7YrBkJX7tYHiTQa"
-CONSUMER_SECRET = "FxORXf9fxcx42TjS2zs7QQPhMLWdIbVhg21x3zPwYbZr8FQlVl"
-ACCESS_KEY = "3354785446-XBPcIpXcilNWUAdqXC0tt2hw24kw5aobcCikd61"
-ACCESS_SECRET = "wIYknOPFUwlsI0cVnzegD9qtrzTQpJFfsSYXSqroNVHV6"
+CONSUMER_KEY = ""
+CONSUMER_SECRET = ""
+ACCESS_KEY = ""
+ACCESS_SECRET = ""
 auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
 api = tweepy.API(auth)
 camera = picamera.PiCamera()
-filename = '/home/pi/Desktop/Yeni/temp.jpg'
+filename = ''
 
 
 class streamListener(tweepy.StreamListener):
@@ -23,7 +23,7 @@ class streamListener(tweepy.StreamListener):
         ts = time.time()
         st = datetime.datetime.fromtimestamp(ts).strftime('%H:%M:%S')
         user = status.user.screen_name
-        randQuote = 'It is ' + st + ' and welcome to MakerDay #live #makermovement #beta #makercocuk'
+        randQuote = 'It is ' + st + ' and test tweet.'
         #gets their tweetid so you can reply to it
         tweetId = status.id
         #takes photo with picamera.
@@ -52,4 +52,4 @@ if __name__ == '__main__':
     listener = streamListener()
     stream = tweepy.Stream(auth, listener)
 	#checks for whatever you want. #seanrandomness was unused so i used it
-    stream.filter(track=['#makerlablive'])
+    stream.filter(track=['#hastagtofollow'])
